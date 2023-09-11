@@ -14,7 +14,7 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState("movies");
 
   return (
-    <nav className="flex items-center justify-between w-full p-4 text-white bg-slate-800">
+    <nav className="flex items-center justify-between w-full p-4 ">
       <Link href="/" id="homepage">
         <div className="flex items-center cursor-pointer">
           <Image

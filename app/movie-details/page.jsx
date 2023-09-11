@@ -5,7 +5,7 @@ import MovieInfo from "../components/MovieInfo";
 
 const MovieDetails = () => {
   return (
-    <section className="relative z-10 flex flex-col w-full h-full gap-10 pt-8 text-white bg-slate-800">
+    <section className="relative z-10 flex flex-col w-full  h-full gap-10 pt-8">
       <div>
         <Link
           href="/"
@@ -15,13 +15,13 @@ const MovieDetails = () => {
         </Link>
       </div>
       <div>
-        <article className="container p-3 mx-auto">
+        <article className="p-3 mx-auto">
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row lg:gap-10">
-            <div className="w-full lg:w-1/2">
+            <div className="w-auto h-[30rem]">
               <Image
                 src={PlaceholderImage}
                 alt="image placeholder"
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full rounded-lg"
                 width={200}
                 height={200}
               />
