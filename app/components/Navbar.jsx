@@ -1,8 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../public/logo.png";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Navbar = () => {
+  // const router = useRouter();
+  const homePath = "/";
+  const showsPath = "/shows";
+
+  const [activeLink, setActiveLink] = useState("movies");
+
   return (
     <nav className="flex items-center justify-between w-full p-4 text-white bg-slate-800">
       <Link href="/" id="homepage">
@@ -21,8 +31,20 @@ const Navbar = () => {
       </Link>
       <div>
         <div className="flex items-center gap-3 cursor-pointer">
-          <Link href="/">Movies</Link>
-          <Link href="/">TV shows</Link>
+          <Link
+            href={homePath}
+            className={`${activeLink === "movies" ? `active` : ``}`}
+            onClick={() => setActiveLink("movies")}
+          >
+            Movies
+          </Link>
+          <Link
+            href={showsPath}
+            className={`${activeLink === "shows" ? `active` : ``}`}
+            onClick={() => setActiveLink("shows")}
+          >
+            TV shows
+          </Link>
         </div>
       </div>
     </nav>

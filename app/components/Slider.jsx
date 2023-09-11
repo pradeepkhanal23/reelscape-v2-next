@@ -1,40 +1,40 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
-
+import { Autoplay, EffectCoverflow } from "swiper/modules";
+import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
+import Image from "next/image";
 // Import Swiper styles
+
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import Link from "next/link";
 
 const Slider = () => {
   return (
-    <section className="  mx-auto min-h-[60vh]  py-10 my-10 relative w-full px-2">
-      <h2 className="text-center text-xl uppercase font-bold pb-10 md:text-4xl">
+    <section className="mx-auto min-h-[60vh]  py-10  relative w-full px-2 border border-white ">
+      <h2 className="text-center text-xl uppercase font-bold pb-10 md:text-2xl">
         Now Playing
       </h2>
       <div>
         <Swiper
-          style={{
-            "--swiper-pagination-color": "#FFBA08",
-            "--swiper-pagination-bullet-inactive-color": "#999999",
-            "--swiper-pagination-bullet-inactive-opacity": "1",
-            "--swiper-pagination-bullet-size": "10px",
-            "--swiper-pagination-bullet-horizontal-gap": "6px",
-            "--swiper-pagination-right": "auto",
-            "--swiper-pagination-left": "auto",
-            "--swiper-pagination-top": "90%",
-            "--swiper-pagination-bottom": "0px",
-          }}
           // install Swiper modules
-          modules={[EffectCoverflow, Autoplay, Pagination]}
-          autoHeight={true}
+          modules={[EffectCoverflow, Autoplay]}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          spaceBetween={100}
+          spaceBetween={30}
           slidesPerView={4}
           loop={true}
+          breakpoints={{
+            380: {
+              slidesPerView: 1,
+            },
+            600: {
+              slidesPerView: 2,
+            },
+            1400: {
+              slidesPerView: 4,
+            },
+          }}
           coverflowEffect={{
             rotate: 20,
             stretch: 0,
@@ -42,66 +42,29 @@ const Slider = () => {
             modifier: 1.8,
             slideShadows: false,
           }}
-          pagination={{
-            clickable: true,
-            type: "bullets",
-          }}
           scrollbar={{ draggable: true }}
           autoplay={{
             delay: 2000,
             disableOnInteraction: false,
           }}
         >
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center p-10">
-              Slide 1
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 2
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 3
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 4
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 5
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 6
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 7
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 8
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 9
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="border border-red-300 w-72 h-72 flex items-center justify-center">
-              Slide 10
-            </div>
-          </SwiperSlide>
+          {Array.from({ length: 12 }, (_, i) => {
+            return (
+              <SwiperSlide key={i}>
+                <Link href="/movie-details">
+                  <div className="w-full h-[30rem]  ">
+                    <Image
+                      src={PlaceholderImage}
+                      alt="movie-card"
+                      width={300}
+                      height={300}
+                      className="object-cover h-full w-full rounded-lg shadow-lg"
+                    />
+                  </div>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </section>

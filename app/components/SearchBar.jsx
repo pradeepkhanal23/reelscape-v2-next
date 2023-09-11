@@ -2,21 +2,29 @@ const SearchBar = () => {
   return (
     <>
       <form
-        className="mx-auto my-10 w-[98%] p-3 flex items-center justify-center"
+        className="mx-auto my-10 w-[98%] p-3 flex flex-col items-center "
         action="/search.html"
       >
-        <div className="pt-5 text-center" id="search-radio">
-          <label htmlFor="movie">Movies</label>
-          <input
-            type="radio"
-            id="movie"
-            name="type"
-            value="movie"
-            defaultChecked
-          />
+        <div className="pt-5 text-center flex items-center" id="search-radio">
+          <div>
+            <label htmlFor="movie" className="mr-2">
+              Movies
+            </label>
+            <input
+              type="radio"
+              id="movie"
+              name="type"
+              value="movie"
+              defaultChecked
+            />
+          </div>
           <span className="mx-2"></span>
-          <label htmlFor="tv">TV Shows</label>
-          <input type="radio" id="tv" name="type" value="tv" />
+          <div>
+            <label htmlFor="tv" className="mr-2">
+              TV Shows
+            </label>
+            <input type="radio" id="tv" name="type" value="tv" />
+          </div>
         </div>
         <div
           className="flex flex-col items-center w-screen gap-5 px-8 mt-5 mb-10 md:flex-row md:items-center md:justify-center"
