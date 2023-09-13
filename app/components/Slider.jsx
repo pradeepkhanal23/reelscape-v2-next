@@ -1,19 +1,22 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectCoverflow } from "swiper/modules";
 import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
 import Image from "next/image";
-
-// Import Swiper styles
-
-import "swiper/css";
-import "swiper/css/effect-coverflow";
+import useFetch from "../utils/useFetch";
 import Link from "next/link";
 
-const Slider = ({ movies }) => {
-  console.log(movies);
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+
+// import Swiper core and required modules
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
+
+const Slider = () => {
+  const { data } = useFetch("movie/now_playing");
+  const nowPlaying = data.results;
 
   return (
-    <section className="mx-auto min-h-[60vh]  py-10  relative w-full px-2 ">
+    <section className="mx-auto min-h-[60vh] py-10  relative w-full px-2 ">
       <h2 className="text-center text-4xl uppercase font-bold pb-10 ">
         Now Playing
       </h2>
@@ -51,27 +54,30 @@ const Slider = ({ movies }) => {
             disableOnInteraction: false,
           }}
         >
-          {movies.map((movie) => {
-            const { poster_path, id } = movie;
+          {nowPlaying &&
+            nowPlaying.map((movie) => {
+              const { poster_path, id } = movie;
 
-            //constructing full url poster path
-            const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
-            return (
-              <SwiperSlide key={id}>
-                <Link href="/movie-details">
-                  <div className="w-[30rem] h-auto  ">
-                    <Image
-                      src={posterUrl}
-                      alt="movie-card"
-                      width={300}
-                      height={300}
-                      className="object-cover h-full w-full rounded-lg shadow-lg border border-white"
-                    />
-                  </div>
-                </Link>
-              </SwiperSlide>
-            );
-          })}
+              //constructing full url poster path
+              const posterUrl = movie
+                ? `https://image.tmdb.org/t/p/original${poster_path}`
+                : PlaceholderImage;
+              return (
+                <SwiperSlide key={id} className="mb-5">
+                  <Link href={`/movie-details/${id}`}>
+                    <div className="max-w-lg mx-auto h-fit  ">
+                      <Image
+                        src={posterUrl}
+                        alt="movie-card"
+                        width={300}
+                        height={300}
+                        className="object-cover h-full w-full rounded-xl shadow-lg border-2 border-white"
+                      />
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
         </Swiper>
       </div>
     </section>
