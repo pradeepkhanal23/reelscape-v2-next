@@ -14,17 +14,17 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState("movies");
 
   return (
-    <nav className="flex items-center justify-between w-full p-4 ">
+    <nav className="flex items-center justify-between w-full px-6 py-4 ">
       <Link href="/" id="homepage">
         <div className="flex items-center cursor-pointer">
           <Image
             src={Logo}
             alt="Picture of the author"
-            height={60}
-            width={60}
+            height={50}
+            width={50}
             priority
           />
-          <h2 className="font-bold uppercase md:ml-2 hidden md:block ">
+          <h2 className="font-bold text-2xl uppercase md:ml-2 hidden md:block ">
             ReelScape
           </h2>
         </div>

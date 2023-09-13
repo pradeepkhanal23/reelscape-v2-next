@@ -2,7 +2,7 @@ const Loader = () => {
   return (
     <div
       id="loader-container"
-      className="fixed flex z-[9999] items-center justify-center w-screen h-screen bg-black z-60 bg-opacity-70"
+      className="fixed top-0 bottom-0 right-0 left-0 flex z-[9999] items-center justify-center w-screen h-screen bg-black z-60 bg-opacity-70"
     >
       <svg
         className="animate-spin"

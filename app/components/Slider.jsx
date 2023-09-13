@@ -2,16 +2,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
 import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
 import Image from "next/image";
+
 // Import Swiper styles
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import Link from "next/link";
 
-const Slider = () => {
+const Slider = ({ movies }) => {
+  console.log(movies);
+
   return (
-    <section className="mx-auto min-h-[60vh]  py-10  relative w-full px-2 border border-white ">
-      <h2 className="text-center text-xl uppercase font-bold pb-10 md:text-2xl">
+    <section className="mx-auto min-h-[60vh]  py-10  relative w-full px-2 ">
+      <h2 className="text-center text-4xl uppercase font-bold pb-10 ">
         Now Playing
       </h2>
       <div>
@@ -21,14 +24,14 @@ const Slider = () => {
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          spaceBetween={30}
+          spaceBetween={50}
           slidesPerView={4}
           loop={true}
           breakpoints={{
             380: {
               slidesPerView: 1,
             },
-            600: {
+            900: {
               slidesPerView: 2,
             },
             1400: {
@@ -48,17 +51,21 @@ const Slider = () => {
             disableOnInteraction: false,
           }}
         >
-          {Array.from({ length: 12 }, (_, i) => {
+          {movies.map((movie) => {
+            const { poster_path, id } = movie;
+
+            //constructing full url poster path
+            const posterUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
             return (
-              <SwiperSlide key={i}>
+              <SwiperSlide key={id}>
                 <Link href="/movie-details">
-                  <div className="w-full h-[30rem]  ">
+                  <div className="w-[30rem] h-auto  ">
                     <Image
-                      src={PlaceholderImage}
+                      src={posterUrl}
                       alt="movie-card"
                       width={300}
                       height={300}
-                      className="object-cover h-full w-full rounded-lg shadow-lg"
+                      className="object-cover h-full w-full rounded-lg shadow-lg border border-white"
                     />
                   </div>
                 </Link>

@@ -1,13 +1,15 @@
-import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
-import Image from "next/image";
+import SearchBar from "../components/SearchBar";
 import Link from "next/link";
+import Image from "next/image";
+import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
 
-const Shows = () => {
+const SearchPage = () => {
   return (
     <>
+      <SearchBar />
       <section className=" w-full p-10 ">
         <h2 className="text-center text-xl uppercase font-bold pb-10 md:text-2xl">
-          Popular TV Shows
+          20 of 60 results for movie spiderman
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
           {Array.from({ length: 8 }, (_, i) => {
@@ -36,4 +38,4 @@ const Shows = () => {
     </>
   );
 };
-export default Shows;
+export default SearchPage;
