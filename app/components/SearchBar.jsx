@@ -36,7 +36,7 @@ const SearchBar = () => {
             id="user-input"
             name="user-input"
             placeholder="Enter movie name...."
-            className="w-[80%] px-4 py-2.5 border-2 rounded-md border-white bg-transparent focus:outline-yellow-100 md:w-[60%] lg:w-[40%]"
+            className="w-full px-4 py-2.5 border-2 rounded-md border-white bg-transparent focus:outline-yellow-100 md:w-[60%] lg:w-[40%]"
           />
           <button
             className="text-white  px-5 py-2.5 w-[30%] rounded-md border-2 border-white md:w-[20%] lg:w-[10%]"
