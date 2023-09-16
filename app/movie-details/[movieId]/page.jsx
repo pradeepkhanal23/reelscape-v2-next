@@ -11,7 +11,6 @@ import Star from "../../../public/star.png";
 const MovieDetails = () => {
   const { movieId } = useParams();
   const { data } = useFetch(`movie/${movieId}`);
-  console.log(data);
 
   const {
     backdrop_path,
@@ -38,15 +37,16 @@ const MovieDetails = () => {
     : ``;
 
   return (
-    <section
-      className="relative z-10 flex flex-col w-full  h-full gap-10 pt-8 "
-      style={{
-        backgroundImage: `url(${backdropUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <section className="relative  flex flex-col w-full  h-full gap-10 pt-8 ">
+      <div
+        className="absolute inset-0 bg-red h-full w-full opacity-10 -z-10 "
+        style={{
+          backgroundImage: `url(${backdropUrl})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      ></div>
       <div>
         <Link
           href="/"
@@ -57,14 +57,15 @@ const MovieDetails = () => {
       </div>
       <div>
         <article className="p-3 mx-auto">
-          <div className="flex flex-col items-center justify-center gap-2 lg:flex-row lg:gap-10">
-            <div className="w-auto h-[30rem]">
+          <div className="flex flex-col items-center justify-center gap-2 lg:flex-row lg:gap-10 p-5  ">
+            <div className="w-auto h-fit md:w-96">
               <Image
                 src={posterUrl}
                 alt="image placeholder"
                 className="object-cover w-full h-full rounded-lg border-2 border-white"
                 width={200}
                 height={200}
+                priority
               />
             </div>
             <div className="flex flex-col items-center w-full gap-2 lg:w-1/2 lg:items-start">
@@ -81,7 +82,6 @@ const MovieDetails = () => {
               <h2 className="font-bold">Genres</h2>
               {genres &&
                 genres.map((genre, i) => {
-                  console.log(genre);
                   return <h3 key={i}>{genre.name}</h3>;
                 })}
             </div>

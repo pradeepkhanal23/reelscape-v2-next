@@ -14,7 +14,7 @@ const PopularMovies = () => {
       <h2 className="text-center text-4xl uppercase font-bold pb-10 mb-5">
         Popular Movies
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5  ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5  gap-5 max-w-[1500px] mx-auto  ">
         {popularMovies &&
           popularMovies.map((movie) => {
             const { poster_path, id, title, release_date } = movie;

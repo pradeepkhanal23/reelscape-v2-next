@@ -8,14 +8,14 @@ import useFetch from "../utils/useFetch";
 const Shows = () => {
   const { data } = useFetch("tv/popular");
   const popularShows = data.results;
-  console.log(popularShows);
+
   return (
     <>
       <section className=" w-full p-10 ">
         <h2 className="text-center text-4xl uppercase font-bold pb-10 ">
           Popular TV Shows
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-[1500px] mx-auto">
           {popularShows &&
             popularShows.map((show) => {
               const { name, id, first_air_date, poster_path } = show;
@@ -24,7 +24,7 @@ const Shows = () => {
                 : PlaceholderImage;
 
               return (
-                <article key={id}>
+                <article key={id} className="p-3">
                   <Link href={`show-details/${id}`}>
                     <div className="max-w-lg h-84 mx-auto flex flex-col gap-2 ">
                       <Image

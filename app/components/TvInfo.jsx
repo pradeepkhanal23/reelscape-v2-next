@@ -1,28 +1,43 @@
-const TvInfo = () => {
+const TvInfo = ({
+  production_companies,
+  status,
+  last_episode_to_air,
+  number_of_episodes,
+}) => {
   return (
     <article>
       <h1 className="font-extrabold text-center uppercase">TV Info</h1>
       <div className="my-1 mx-auto w-[98%]">
         <div>
           <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
-            Number of Episodes: <strong className="text-white">228</strong>
+            Number of Episodes:{" "}
+            <strong className="text-white">{number_of_episodes}</strong>
           </span>
 
           <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
-            Last Episode to Air:{" "}
-            <strong className="text-white">The Last One, 2004-05-06</strong>
+            Last Episode to Air:
+            <strong className="text-white">
+              {` `}
+              {last_episode_to_air?.name}, {last_episode_to_air?.air_date}
+            </strong>
           </span>
 
           <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
-            Status: <strong className="text-white">Ended</strong>
+            Status: <strong className="text-white">{status}</strong>
           </span>
         </div>
         <br />
         <div>
           <h3 className="pl-2 font-medium">Production Companies</h3>
-          <span className="pl-2 text-md">Company1,</span>
-          <span className="pl-2 text-md">Company2,</span>
-          <span className="pl-2 text-md">Company3</span>
+          {production_companies &&
+            production_companies.map((company, i) => {
+              return (
+                <span className="pl-2 text-md" key={i}>
+                  {company.name},
+                  <br />
+                </span>
+              );
+            })}
         </div>
       </div>
     </article>

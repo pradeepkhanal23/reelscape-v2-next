@@ -6,16 +6,46 @@ import Image from "next/image";
 import PlaceholderImage from "../../../public/No-Image-Placeholder.svg.png";
 import useFetch from "../../../app/utils/useFetch";
 import { useParams } from "next/navigation";
+import Star from "../../../public/star.png";
 
 const TVDetails = () => {
   const { showId } = useParams();
-  console.log(showId);
-
   const { data } = useFetch(`tv/${showId}`);
-  console.log(data);
+
+  const {
+    backdrop_path,
+    poster_path,
+    name,
+    overview,
+    first_air_date,
+    vote_average,
+    genres,
+    homepage,
+    number_of_episodes,
+    status,
+    last_episode_to_air,
+    production_companies,
+  } = data;
+
+  const posterUrl = data
+    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+    : PlaceholderImage;
+
+  const backdropUrl = data
+    ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
+    : ``;
 
   return (
     <section className="relative z-10 flex flex-col w-full h-full gap-10 pt-8 ">
+      <div
+        className="absolute inset-0 bg-red h-full w-full opacity-10 -z-10 "
+        style={{
+          backgroundImage: `url(${backdropUrl})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      ></div>
       <div>
         <Link
           href="/shows"
@@ -27,34 +57,32 @@ const TVDetails = () => {
       <div>
         <article className="container p-3 mx-auto">
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row lg:gap-10">
-            <div className="w-auto h-[30rem]">
+            <div className="w-auto h-fit md:w-96">
               <Image
-                src={PlaceholderImage}
+                src={posterUrl}
                 alt="image placeholder"
                 className="object-cover w-full h-full rounded-lg"
                 width={200}
                 height={200}
+                priority
               />
             </div>
             <div className="flex flex-col items-center w-full gap-2 lg:w-1/2 lg:items-start">
               <h1 className="font-bold tracking-wider text-center uppercase">
-                Show Title
+                {name}
               </h1>
+              <div className="flex items-center mb-2">
+                <Image src={Star} alt="star" height={20} width={20} />
+                <span className="ml-2">{vote_average?.toFixed(1)} / 10</span>
+              </div>
 
-              <h2>First Air Date: XX/XX/XXXX</h2>
-              <p className="p-1 text-justify">
-                For the geeky, for the nerdy, for the true cinema believers,
-                this one’s for you. A mass of quite interesting factoids abut
-                your favourite flicks that you can pass off in pubs up and down
-                the land to either the choruses of cheers, hails of boos or the
-                polite nod. The number of facts? Why, it’s a third of Frank
-                Miller’s 300, a dozen mph short of the speed needed for DeLorean
-                time travel and 8.3 times the number of Angry Men.
-              </p>
+              <h2>First Air Date: {first_air_date}</h2>
+              <p className="p-1 text-justify">{overview}</p>
               <h2 className="font-bold">Genres</h2>
-              <h3>Genre 1</h3>
-              <h3>Genre 2</h3>
-              <h3>Genre 3</h3>
+              {genres &&
+                genres.map((genre, i) => {
+                  return <h3 key={i}>{genre.name}</h3>;
+                })}
             </div>
           </div>
         </article>
@@ -62,13 +90,20 @@ const TVDetails = () => {
 
       <div>
         <Link
-          href="/"
+          href={`${homepage ? homepage : "#"}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="self-start border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md hover:scale-[1.04] transition duration-150 hover:ease-in"
         >
           Visit TV Homepage
         </Link>
       </div>
-      <TvInfo />
+      <TvInfo
+        status={status}
+        number_of_episodes={number_of_episodes}
+        last_episode_to_air={last_episode_to_air}
+        production_companies={production_companies}
+      />
     </section>
   );
 };
