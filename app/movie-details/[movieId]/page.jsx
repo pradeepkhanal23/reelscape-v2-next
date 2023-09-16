@@ -37,9 +37,9 @@ const MovieDetails = () => {
     : ``;
 
   return (
-    <section className="relative  flex flex-col w-full  h-full gap-10 pt-8 ">
+    <section className=" flex flex-col w-full  h-full gap-10 pt-8 ">
       <div
-        className="absolute inset-0 bg-red h-full w-full opacity-10 -z-10 "
+        className="fixed inset-0 bg-red h-screen w-screen opacity-10 -z-10 "
         style={{
           backgroundImage: `url(${backdropUrl})`,
           backgroundSize: "cover",

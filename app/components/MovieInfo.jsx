@@ -31,7 +31,7 @@ const MovieInfo = ({
             </span>
           </div>
           <br />
-          <div>
+          <div className="pb-5">
             <h3 className="pl-2 font-medium">Production Companies</h3>
             {production_companies &&
               production_companies.map((company, i) => {

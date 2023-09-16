@@ -36,9 +36,9 @@ const TVDetails = () => {
     : ``;
 
   return (
-    <section className="relative z-10 flex flex-col w-full h-full gap-10 pt-8 ">
+    <section className=" z-10 flex flex-col w-full h-full gap-10 pt-8 ">
       <div
-        className="absolute inset-0 bg-red h-full w-full opacity-10 -z-10 "
+        className="fixed w-screen h-screen inset-0 bg-red  opacity-10 -z-10 "
         style={{
           backgroundImage: `url(${backdropUrl})`,
           backgroundSize: "cover",
