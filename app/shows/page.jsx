@@ -4,6 +4,7 @@ import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
 import Image from "next/image";
 import Link from "next/link";
 import useFetch from "../utils/useFetch";
+import SearchBar from "../components/SearchBar";
 
 const Shows = () => {
   const { data } = useFetch("tv/popular");
@@ -12,8 +13,9 @@ const Shows = () => {
   return (
     <>
       <section className=" w-full p-10 ">
+        <SearchBar />
         <h2 className="text-center text-4xl uppercase font-bold pb-10 ">
-          Popular TV Shows
+          <span className="text-yellow-300">Popular</span> TV Shows
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-[1500px] mx-auto">
           {popularShows &&

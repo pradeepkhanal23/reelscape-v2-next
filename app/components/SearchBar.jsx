@@ -13,7 +13,13 @@ const SearchBar = () => {
           <label htmlFor="movie" className="mr-2">
             Movies
           </label>
-          <input type="radio" id="movie" name="type" value="movie" />
+          <input
+            type="radio"
+            id="movie"
+            name="type"
+            value="movie"
+            defaultChecked
+          />
           <span className="mx-2"></span>
           <label htmlFor="tv" className="mr-2">
             TV Shows
@@ -33,7 +39,7 @@ const SearchBar = () => {
             className="w-[80%] px-4 py-2.5 border-2 rounded-md border-white bg-transparent focus:outline-yellow-100 md:w-[60%] lg:w-[40%]"
           />
           <button
-            className="text-white bg-[#2b4259] px-5 py-2.5 w-[30%] rounded-md border-2 border-white md:w-[20%] lg:w-[10%]"
+            className="text-white  px-5 py-2.5 w-[30%] rounded-md border-2 border-white md:w-[20%] lg:w-[10%]"
             type="submit"
           >
             Search

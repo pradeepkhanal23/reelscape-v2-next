@@ -17,8 +17,8 @@ const Slider = () => {
 
   return (
     <section className="mx-auto min-h-[60vh] py-10  relative w-full px-2 ">
-      <h2 className="text-center text-4xl uppercase font-bold pb-10 ">
-        Now Playing
+      <h2 className="text-center text-4xl uppercase  font-bold pb-10 ">
+        <span className="text-yellow-300">Now</span> Playing
       </h2>
       <div>
         <Swiper

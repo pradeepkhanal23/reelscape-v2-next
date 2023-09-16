@@ -29,7 +29,7 @@ const MovieDetails = () => {
   } = data;
 
   const posterUrl = data
-    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+    ? `https://image.tmdb.org/t/p/original/${poster_path}`
     : PlaceholderImage;
 
   const backdropUrl = data
