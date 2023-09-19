@@ -28,11 +28,11 @@ const MovieDetails = () => {
     production_companies,
   } = data;
 
-  const posterUrl = data
+  const posterUrl = poster_path
     ? `https://image.tmdb.org/t/p/original/${poster_path}`
     : PlaceholderImage;
 
-  const backdropUrl = data
+  const backdropUrl = backdrop_path
     ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
     : ``;
 
