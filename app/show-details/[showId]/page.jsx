@@ -61,7 +61,7 @@ const TVDetails = () => {
               <Image
                 src={posterUrl}
                 alt="image placeholder"
-                className="object-cover w-full h-full rounded-lg"
+                className="object-cover w-full h-full rounded-lg border-2 border-white"
                 width={200}
                 height={200}
                 priority

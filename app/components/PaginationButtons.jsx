@@ -1,4 +1,4 @@
-const PaginationButtons = () => {
+const PaginationButtons = ({ page, total_pages }) => {
   return (
     <>
       <section>
@@ -17,7 +17,9 @@ const PaginationButtons = () => {
               Next
             </button>
           </div>
-          <p className="text-xl mt-5">Page 1 of 500</p>
+          <p className="text-xl mt-5">
+            Page {page} of {total_pages}
+          </p>
         </div>
       </section>
     </>

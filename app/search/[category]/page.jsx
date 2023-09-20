@@ -1,8 +1,13 @@
-import SearchBar from "../components/SearchBar";
+"use client";
+
+import SearchBar from "../../components/SearchBar";
 import Link from "next/link";
 import Image from "next/image";
-import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
-import PaginationButtons from "../components/PaginationButtons";
+import PlaceholderImage from "../../../public/No-Image-Placeholder.svg.png";
+import PaginationButtons from "../../components/PaginationButtons";
+import { useRouter } from "next/navigation";
+import { fetchSearchAPIData } from "@/lib/fetchSearchAPIData";
+import { useState, useEffect } from "react";
 
 const SearchPage = () => {
   return (

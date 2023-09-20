@@ -1,13 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SearchBar = () => {
+  const [formInputs, setFormInputs] = useState({
+    category: "movie",
+    searchTerm: "",
+  });
+
+  const handleInputs = (e) => {
+    let { name, value } = e.target;
+    setFormInputs({
+      ...formInputs,
+      [name]: value,
+    });
+  };
+
+  const router = useRouter();
+
+  const search = async (e) => {
+    e.preventDefault();
+    if (formInputs.searchTerm !== "" && formInputs.searchTerm !== null) {
+      router.push(`/search/${formInputs.category}/${formInputs.searchTerm}`);
+    } else {
+      alert("Please enter a search term");
+    }
+  };
+
   return (
     <>
       <form
-        className="mx-auto my-10 w-[98%] p-3 flex flex-col items-center "
-        action="/search"
+        className="mx-auto my-10 w-[98%] p-3 flex flex-col items-center"
+        onSubmit={search}
       >
         <div className="pt-5 text-center flex items-center" id="search-radio">
           <label htmlFor="movie" className="mr-2">
@@ -16,15 +42,23 @@ const SearchBar = () => {
           <input
             type="radio"
             id="movie"
-            name="type"
+            name="category"
             value="movie"
-            defaultChecked
+            checked={formInputs.category === "movie"}
+            onChange={handleInputs}
           />
           <span className="mx-2"></span>
           <label htmlFor="tv" className="mr-2">
             TV Shows
           </label>
-          <input type="radio" id="tv" name="type" value="tv" />
+          <input
+            type="radio"
+            id="tv"
+            name="category"
+            value="tv"
+            checked={formInputs.category === "tv"}
+            onChange={handleInputs}
+          />
         </div>
         <div
           className="flex flex-col items-center w-screen gap-5 px-8 mt-5 mb-10 md:flex-row md:items-center md:justify-center"
@@ -34,8 +68,9 @@ const SearchBar = () => {
             required
             type="text"
             id="user-input"
-            name="user-input"
-            placeholder="Enter movie name...."
+            name="searchTerm"
+            onChange={handleInputs}
+            placeholder="Enter movie or tv name...."
             className="w-full px-4 py-2.5 border-2 rounded-md border-white bg-transparent focus:outline-yellow-100 md:w-[60%] lg:w-[40%]"
           />
           <button
