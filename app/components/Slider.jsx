@@ -16,7 +16,7 @@ const Slider = () => {
   const nowPlaying = data.results;
 
   return (
-    <section className="mx-auto min-h-[60vh] py-10  relative w-full px-2 ">
+    <section className="mx-auto min-h-[60vh] py-10  relative w-full px-3">
       <h2 className="text-center text-4xl uppercase  font-bold pb-10 ">
         <span className="text-yellow-300">Now</span> Playing
       </h2>
@@ -34,8 +34,12 @@ const Slider = () => {
             380: {
               slidesPerView: 1,
             },
-            900: {
+
+            600: {
               slidesPerView: 2,
+            },
+            900: {
+              slidesPerView: 3,
             },
             1400: {
               slidesPerView: 4,
@@ -63,15 +67,15 @@ const Slider = () => {
                 ? `https://image.tmdb.org/t/p/original${poster_path}`
                 : PlaceholderImage;
               return (
-                <SwiperSlide key={id} className="mb-5">
+                <SwiperSlide key={id} className="mb-5 ">
                   <Link href={`/movie-details/${id}`}>
-                    <div className="max-w-lg mx-auto h-fit  ">
+                    <div className="w-auto h-fit mx-auto  ">
                       <Image
                         src={posterUrl}
                         alt="movie-card"
                         width={300}
                         height={300}
-                        className="object-cover h-full w-full rounded-xl shadow-lg border-2 border-white"
+                        className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white "
                       />
                     </div>
                   </Link>
