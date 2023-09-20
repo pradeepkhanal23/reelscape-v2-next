@@ -12,7 +12,11 @@ import useSearchFetch from "@/app/utils/useSearchFetch";
 const SearchPage = () => {
   const { category, query } = useParams();
 
-  const searchedData = useSearchFetch(category, query);
+  function removePercent20(string) {
+    return string.replace(/%20/g, " ");
+  }
+
+  const searchedData = useSearchFetch(category, removePercent20(query));
   const { page, results, total_pages, total_results } = searchedData.data;
 
   console.log(searchedData);
@@ -26,7 +30,7 @@ const SearchPage = () => {
           <q className="text-4xl text-yellow-300">
             {``} {results?.length} of {total_results} results for {category}
             {` `}
-            {query}
+            {removePercent20(query)}
             {` `}
           </q>
         </h2>
