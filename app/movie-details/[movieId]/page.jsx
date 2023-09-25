@@ -1,6 +1,5 @@
 "use client";
 
-import TvInfo from "../../components/TvInfo";
 import Link from "next/link";
 import Image from "next/image";
 import PlaceholderImage from "../../../public/No-Image-Placeholder.svg.png";
@@ -76,8 +75,8 @@ export default function MovieDetails() {
                   src={posterUrl}
                   alt="image placeholder"
                   className="object-cover w-full h-full rounded-lg border-2 border-white"
-                  width={200}
-                  height={200}
+                  width={800}
+                  height={800}
                   priority
                 />
               </div>

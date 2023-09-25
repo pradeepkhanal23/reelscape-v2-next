@@ -53,7 +53,7 @@ const SearchPage = () => {
         />
         <DisplayOutput
           results={results}
-          category={category === "tv" ? "tv" : "movie"}
+          category={category === "tv" ? "show" : "movie"}
         />
       </section>
       <div className=" flex flex-col items-center justify-center w-full mx-auto">

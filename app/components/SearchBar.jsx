@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 const SearchBar = () => {
   const [formInputs, setFormInputs] = useState({
@@ -74,7 +73,7 @@ const SearchBar = () => {
             className="w-full px-4 py-2.5 border-2 rounded-md border-white bg-transparent focus:outline-yellow-100 md:w-[60%] lg:w-[40%]"
           />
           <button
-            className="text-white  px-5 py-2.5 w-[30%] rounded-md border-2 border-white md:w-[20%] lg:w-[10%]"
+            className="text-yellow-300 font-bold  px-5 py-2.5 w-[30%] rounded-md border-2 border-white md:w-[20%] lg:w-[10%]"
             type="submit"
           >
             Search

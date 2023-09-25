@@ -26,12 +26,23 @@ const Navbar = () => {
       </Link>
       <div>
         <div className="flex items-center gap-3 cursor-pointer">
-          <Link href="/" className={`${pathname === "/" ? "active" : ""}`}>
+          <Link
+            href="/"
+            className={`${
+              pathname === "/" || pathname.startsWith("/movie-details/")
+                ? "active"
+                : ""
+            }`}
+          >
             Movies
           </Link>
           <Link
             href="/shows"
-            className={`${pathname === "/shows" ? "active" : ""}`}
+            className={`${
+              pathname === "/shows" || pathname.startsWith("/show-details/")
+                ? "active"
+                : ""
+            }`}
           >
             TV shows
           </Link>

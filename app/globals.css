@@ -15,24 +15,5 @@ body {
 }
 
 .active {
-  @apply font-bold text-yellow-300 scale-[1.05] transition-all ease-in;
-}
-
-.card-container {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
-}
-
-.card {
-  @apply object-cover h-full w-full rounded-lg shadow-lg hover:scale-[1.03] transition-all cursor-pointer;
-}
-.error {
-  @apply w-[95%] h-12 p-3 mx-auto mt-10 bg-red-700 border-2 border-white flex items-center justify-center  md:w-[50%];
-}
-
-.success {
-  @apply w-[95%] h-12 p-3 mx-auto mt-10 bg-green-700 border-2 border-white flex items-center justify-center  md:w-[50%];
-}
-
-.page-btn {
-  @apply border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md text-xl hover:scale-[1.04] transition duration-150 hover:ease-in;
+  @apply font-bold text-yellow-300 scale-[1.06] transition-all ease-linear;
 }

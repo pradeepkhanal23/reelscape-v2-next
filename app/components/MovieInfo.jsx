@@ -37,11 +37,15 @@ const MovieInfo = ({
           </div>
           <br />
           <div className="pb-5">
-            <h3 className="pl-2 font-medium">Production Companies</h3>
+            <h3 className="pl-2 font-bold">
+              {production_companies && production_companies.length === 0
+                ? "Production Details Not Available"
+                : "Production Companies"}
+            </h3>
             {production_companies &&
               production_companies.map((company, i) => {
                 return (
-                  <span className="pl-2 text-md" key={i}>
+                  <span className="pl-2 text-md font-bold" key={i}>
                     {company.name}
                     <br />
                   </span>

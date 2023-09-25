@@ -1,7 +1,6 @@
 import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
 import Image from "next/image";
 import Link from "next/link";
-
 import Title from "./Title";
 
 // Import Swiper styles
@@ -68,18 +67,18 @@ const Slider = ({ sliderMovies }) => {
 
                 //constructing full url poster path
 
-                const posterUrl = movie
-                  ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                const imageUrl = movie
+                  ? `https://image.tmdb.org/t/p/original${poster_path}`
                   : PlaceholderImage;
                 return (
                   <SwiperSlide key={id} className="mb-5 ">
                     <Link href={`/movie-details/${id}`}>
                       <div className="w-auto h-fit mx-auto  ">
                         <Image
-                          src={posterUrl}
+                          src={imageUrl}
                           alt="movie-card"
-                          width={300}
-                          height={300}
+                          width={800}
+                          height={800}
                           priority
                           className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white "
                         />
