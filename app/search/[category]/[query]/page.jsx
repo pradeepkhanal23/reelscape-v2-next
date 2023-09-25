@@ -6,21 +6,29 @@ import Image from "next/image";
 import PlaceholderImage from "../../../../public/No-Image-Placeholder.svg.png";
 import PaginationButtons from "../../../components/PaginationButtons";
 import { useParams } from "next/navigation";
-
-import useSearchFetch from "@/app/utils/useSearchFetch";
+import { getSearchAPIData } from "@/lib/getSearchAPIData";
+import { useState, useEffect } from "react";
 
 const SearchPage = () => {
   const { category, query } = useParams();
+
+  const [searchedData, setSearchedData] = useState([]);
+
+  useEffect(() => {
+    // Fetch search-details
+    async function fetchSearchDetails() {
+      const response = await getSearchAPIData(category, query);
+      setSearchedData(response);
+    }
+
+    fetchSearchDetails();
+  }, [category, query]);
 
   function removePercent20(string) {
     return string.replace(/%20/g, " ");
   }
 
-  const searchedData = useSearchFetch(category, removePercent20(query));
-  const { page, results, total_pages, total_results } = searchedData.data;
-
-  console.log(searchedData);
-  console.log(results);
+  const { page, results, total_pages, total_results } = searchedData;
 
   if (category === "tv") {
     return (
@@ -53,6 +61,7 @@ const SearchPage = () => {
                           width={300}
                           height={300}
                           className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white"
+                          priority
                         />
                       </div>
                     </Link>
@@ -95,6 +104,7 @@ const SearchPage = () => {
                   <Link href={`/movie-details/${id}`}>
                     <div className="max-w-lg h-84 mx-auto flex flex-col ">
                       <Image
+                        priority
                         src={posterUrl}
                         alt="movie-card"
                         width={300}

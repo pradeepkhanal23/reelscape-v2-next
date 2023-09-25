@@ -1,22 +1,24 @@
-"use client";
-
 import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
 import Image from "next/image";
 import Link from "next/link";
-import useFetch from "../utils/useFetch";
 import SearchBar from "../components/SearchBar";
+import Title from "../components/Title";
+import { getAPIEndpointData } from "@/lib/getAPIEndpointData";
+import { Suspense } from "react";
 
-const Shows = () => {
-  const { data } = useFetch("tv/popular");
-  const popularShows = data.results;
+export const metadata = {
+  title: "Shows",
+};
+
+export default async function ShowsPage() {
+  const response = await getAPIEndpointData("tv/popular");
+  const popularShows = await response.results;
 
   return (
     <>
-      <section className=" w-full p-10 ">
+      <section className="w-full p-10">
         <SearchBar />
-        <h2 className="text-center text-4xl uppercase font-bold pb-10 ">
-          <span className="text-yellow-300">Popular</span> TV Shows
-        </h2>
+        <Title description="Popular TV" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-[1500px] mx-auto">
           {popularShows &&
             popularShows.map((show) => {
@@ -29,13 +31,16 @@ const Shows = () => {
                 <article key={id} className="p-3">
                   <Link href={`show-details/${id}`}>
                     <div className="max-w-lg h-84 mx-auto flex flex-col gap-2 ">
-                      <Image
-                        src={posterUrl}
-                        alt={name}
-                        width={300}
-                        height={300}
-                        className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white"
-                      />
+                      <Suspense fallback={<h4>Loading...</h4>}>
+                        <Image
+                          src={posterUrl}
+                          alt={name}
+                          width={300}
+                          height={300}
+                          className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white"
+                          loading="lazy"
+                        />
+                      </Suspense>
                     </div>
                   </Link>
                   <div className="text-center mt-2 tracking-tight uppercase font-bold">
@@ -49,5 +54,4 @@ const Shows = () => {
       </section>
     </>
   );
-};
-export default Shows;
+}

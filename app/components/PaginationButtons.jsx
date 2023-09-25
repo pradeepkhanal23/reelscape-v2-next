@@ -1,4 +1,9 @@
 const PaginationButtons = ({ page, total_pages }) => {
+  const handlePagination = (e) => {
+    e.preventDefault();
+    console.log(page, total_pages);
+  };
+
   return (
     <>
       <section>
@@ -7,12 +12,14 @@ const PaginationButtons = ({ page, total_pages }) => {
             <button
               className="border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md text-lg hover:scale-[1.04] transition duration-150 hover:ease-in"
               id="prev"
+              onClick={handlePagination}
             >
               Prev
             </button>
             <button
               className="border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md text-lg hover:scale-[1.04] transition duration-150 hover:ease-in"
               id="next"
+              onClick={handlePagination}
             >
               Next
             </button>

@@ -3,15 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../public/logo.png";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  // const router = useRouter();
-  const homePath = "/";
-  const showsPath = "/shows";
-
-  const [activeLink, setActiveLink] = useState("movies");
+  const pathname = usePathname();
 
   return (
     <nav className="flex items-center justify-between w-full py-4 px-6 ">
@@ -31,17 +26,12 @@ const Navbar = () => {
       </Link>
       <div>
         <div className="flex items-center gap-3 cursor-pointer">
-          <Link
-            href={homePath}
-            className={`${activeLink === "movies" ? `active` : ``}`}
-            onClick={() => setActiveLink("movies")}
-          >
+          <Link href="/" className={`${pathname === "/" ? "active" : ""}`}>
             Movies
           </Link>
           <Link
-            href={showsPath}
-            className={`${activeLink === "shows" ? `active` : ``}`}
-            onClick={() => setActiveLink("shows")}
+            href="/shows"
+            className={`${pathname === "/shows" ? "active" : ""}`}
           >
             TV shows
           </Link>
