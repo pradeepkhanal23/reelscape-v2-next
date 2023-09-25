@@ -15,12 +15,17 @@ const MovieInfo = ({
           <div>
             <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
               Budget:{" "}
-              <strong className="text-white">${addCommas(budget)}</strong>
+              <strong className="text-white">
+                {budget ? "$ " + addCommas(budget) : "N/A"}
+              </strong>
             </span>
 
             <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
               Revenue:{" "}
-              <strong className="text-white">${addCommas(revenue)}</strong>
+              <strong className="text-white">
+                {" "}
+                {revenue ? "$ " + addCommas(revenue) : "N/A"}
+              </strong>
             </span>
 
             <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
@@ -37,7 +42,7 @@ const MovieInfo = ({
               production_companies.map((company, i) => {
                 return (
                   <span className="pl-2 text-md" key={i}>
-                    {company.name},
+                    {company.name}
                     <br />
                   </span>
                 );

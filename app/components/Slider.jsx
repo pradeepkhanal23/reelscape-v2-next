@@ -11,12 +11,18 @@ import "swiper/css/effect-coverflow";
 // import Swiper core and required modules
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
-import { Suspense } from "react";
 
 const Slider = ({ sliderMovies }) => {
   return (
     <>
-      <section className="mx-auto min-h-[60vh] py-10  relative w-full px-3 ">
+      <section className="mx-auto min-h-[60vh] py-10 relative w-full px-3 ">
+        {/* <div
+          className="absolute inset-0 w-full h-full opacity-50 -z-10"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.5) 100%)",
+          }}
+        ></div> */}
         <Title description="Now Playing" />
         <div>
           <Swiper
@@ -61,8 +67,9 @@ const Slider = ({ sliderMovies }) => {
                 const { poster_path, id } = movie;
 
                 //constructing full url poster path
+
                 const posterUrl = movie
-                  ? `https://image.tmdb.org/t/p/original${poster_path}`
+                  ? `https://image.tmdb.org/t/p/w500${poster_path}`
                   : PlaceholderImage;
                 return (
                   <SwiperSlide key={id} className="mb-5 ">

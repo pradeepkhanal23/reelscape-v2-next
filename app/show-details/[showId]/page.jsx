@@ -16,7 +16,7 @@ export default function TvDetails() {
   useEffect(() => {
     // Fetch tv-details
     async function fetchTvDetails() {
-      const response = await getAPIEndpointData(`tv/${showId}`);
+      const response = await getAPIEndpointData(`show-details/${showId}`);
       setTvDetails(response);
     }
 

@@ -8,6 +8,7 @@ import Star from "../../../public/star.png";
 import { getAPIEndpointData } from "@/lib/getAPIEndpointData";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import MovieInfo from "@/app/components/MovieInfo";
 
 export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState([]);
@@ -61,10 +62,10 @@ export default function MovieDetails() {
         ></div>
         <div>
           <Link
-            href="/shows"
-            className="self-start border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md hover:scale-[1.04] transition duration-150 hover:ease-in"
+            href="/"
+            className="self-start border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md hover:scale-[1.04] transition-all"
           >
-            Back To TV Shows
+            Back To Movie
           </Link>
         </div>
         <div>
@@ -105,12 +106,12 @@ export default function MovieDetails() {
             href={`${homepage ? homepage : "#"}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="self-start border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md hover:scale-[1.04] transition duration-150 hover:ease-in"
+            className="self-start border-solid border-2  border-yellow-300 px-5 py-2 ml-4 rounded-md hover:scale-[1.04] transition-all "
           >
-            Visit TV Homepage
+            Visit Movie Homepage
           </Link>
         </div>
-        <TvInfo
+        <MovieInfo
           status={status}
           budget={budget}
           revenue={revenue}

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Mooli&family=Ubuntu:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Quicksand:wght@400;600;700&family=Rubik:wght@300;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,12 +6,12 @@
 
 @layer base {
   html {
-    font-family: "Ubuntu", "Inter", system-ui, sans-serif;
+    font-family: "Quicksand", "Nunito", "Inter", system-ui, sans-serif;
   }
 }
 
 body {
-  @apply bg-gray-700 text-white md:text-lg;
+  @apply bg-slate-800 text-white md:text-lg;
 }
 
 .active {

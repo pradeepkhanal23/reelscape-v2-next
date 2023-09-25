@@ -4,7 +4,8 @@ const Title = ({ description }) => {
   return (
     <>
       <h2 className="text-center text-4xl uppercase  font-bold pb-10 ">
-        <span className="text-yellow-300">{words[0]}</span> {words[1]}
+        <span className="text-yellow-300">{words[0]}</span>{" "}
+        <span>{words[1]}</span>
       </h2>
     </>
   );

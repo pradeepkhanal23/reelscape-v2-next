@@ -1,128 +1,80 @@
 "use client";
 
-import SearchBar from "../../../components/SearchBar";
-import Link from "next/link";
-import Image from "next/image";
-import PlaceholderImage from "../../../../public/No-Image-Placeholder.svg.png";
-import PaginationButtons from "../../../components/PaginationButtons";
+// import SearchBar from "../../../components/SearchBar";
+import SearchBar from "@/app/components/SearchBar";
 import { useParams } from "next/navigation";
 import { getSearchAPIData } from "@/lib/getSearchAPIData";
 import { useState, useEffect } from "react";
+import DisplayOutput from "@/app/components/DisplayOutput";
+import SearchTitle from "@/app/components/SearchTitle";
 
 const SearchPage = () => {
   const { category, query } = useParams();
 
   const [searchedData, setSearchedData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     // Fetch search-details
     async function fetchSearchDetails() {
-      const response = await getSearchAPIData(category, query);
+      const response = await getSearchAPIData(category, query, currentPage);
       setSearchedData(response);
     }
 
     fetchSearchDetails();
-  }, [category, query]);
-
-  function removePercent20(string) {
-    return string.replace(/%20/g, " ");
-  }
+  }, [category, query, currentPage]);
 
   const { page, results, total_pages, total_results } = searchedData;
 
-  if (category === "tv") {
-    return (
-      <>
-        <SearchBar />
-        <section className=" w-full p-10 ">
-          <h2 className="text-center text-xl uppercase font-bold pb-10 md:text-2xl">
-            <q className="text-4xl text-yellow-300">
-              {``} {results?.length} of {total_results} results for {category}
-              {` `}
-              {removePercent20(query)}
-              {` `}
-            </q>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-[1500px] mx-auto">
-            {results &&
-              results.map((item) => {
-                const { name, id, first_air_date, poster_path } = item;
-
-                const posterUrl = movie
-                  ? `https://image.tmdb.org/t/p/original${poster_path}`
-                  : PlaceholderImage;
-                return (
-                  <article key={id}>
-                    <Link href={`/show-details/${id}`}>
-                      <div className="max-w-lg h-84 mx-auto flex flex-col ">
-                        <Image
-                          src={posterUrl}
-                          alt="movie-card"
-                          width={300}
-                          height={300}
-                          className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white"
-                          priority
-                        />
-                      </div>
-                    </Link>
-                    <div className="text-center mt-2 tracking-tight uppercase font-bold">
-                      <h4 className="uppercase text-yellow-300">{name}</h4>
-                      <p>{first_air_date}</p>
-                    </div>
-                  </article>
-                );
-              })}
-          </div>
-        </section>
-        <PaginationButtons page={page} total_pages={total_pages} />
-      </>
-    );
-  }
+  const handleNext = () => {
+    if (page < total_pages) {
+      setCurrentPage((oldState) => {
+        return oldState + 1;
+      });
+    }
+  };
+  const handlePrev = () => {
+    if (page !== 1) {
+      setCurrentPage((prev) => {
+        return prev - 1;
+      });
+    }
+  };
 
   return (
     <>
       <SearchBar />
       <section className=" w-full p-10 ">
-        <h2 className="text-center text-xl uppercase font-bold pb-10 md:text-2xl">
-          <q className="text-4xl text-yellow-300">
-            {``} {results?.length} of {total_results} results for {category}
-            {` `}
-            {removePercent20(query)}
-            {` `}
-          </q>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-[1500px] mx-auto">
-          {results &&
-            results.map((item) => {
-              const { id, poster_path, title, release_date } = item;
-
-              const posterUrl = movie
-                ? `https://image.tmdb.org/t/p/original${poster_path}`
-                : PlaceholderImage;
-              return (
-                <article key={id}>
-                  <Link href={`/movie-details/${id}`}>
-                    <div className="max-w-lg h-84 mx-auto flex flex-col ">
-                      <Image
-                        priority
-                        src={posterUrl}
-                        alt="movie-card"
-                        width={300}
-                        height={300}
-                        className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white"
-                      />
-                    </div>
-                  </Link>
-                  <div className="text-center mt-2 tracking-tight uppercase font-bold">
-                    <h4 className="uppercase text-yellow-300">{title}</h4>
-                    <p>{release_date}</p>
-                  </div>
-                </article>
-              );
-            })}
-        </div>
+        <SearchTitle
+          results={results}
+          total_results={total_results}
+          category={category}
+          query={query}
+        />
+        <DisplayOutput
+          results={results}
+          category={category === "tv" ? "tv" : "movie"}
+        />
       </section>
-      <PaginationButtons page={page} total_pages={total_pages} />
+      <div className=" flex flex-col items-center justify-center w-full mx-auto">
+        <div>
+          <button
+            onClick={handlePrev}
+            className="border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md text-lg hover:scale-[1.04] transition duration-150 hover:ease-in"
+          >
+            Prev
+          </button>
+          <button
+            onClick={handleNext}
+            className="border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md text-lg hover:scale-[1.04] transition duration-150 hover:ease-in"
+          >
+            Next
+          </button>
+        </div>
+        <p className="text-xl mt-5">
+          Page {page} of {total_pages}
+        </p>
+      </div>
     </>
   );
 };
