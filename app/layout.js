@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata = {
-  title: "Reelscape",
+  title: "Reelscape V2",
   description: "Movie guide and rating website",
 };
 

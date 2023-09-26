@@ -80,7 +80,7 @@ const Slider = ({ sliderMovies }) => {
                           width={800}
                           height={800}
                           priority
-                          className="movie-card "
+                          className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white  "
                         />
                       </div>
                     </Link>
