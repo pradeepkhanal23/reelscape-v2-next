@@ -14,7 +14,7 @@ import { Autoplay, EffectCoverflow } from "swiper/modules";
 const Slider = ({ sliderMovies }) => {
   return (
     <>
-      <section className="mx-auto min-h-[60vh] py-10 relative w-full px-3 ">
+      <section className="mx-auto min-h-[60vh] py-10 relative w-full p-5 ">
         {/* <div
           className="absolute inset-0 w-full h-full opacity-50 -z-10"
           style={{

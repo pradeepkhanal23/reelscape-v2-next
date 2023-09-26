@@ -52,23 +52,21 @@ const SearchPage = () => {
         {loading ? (
           <>
             <SearchTitleSkeleton />
+            <DisplayOutputSkeleton results={results} />
           </>
         ) : (
-          <SearchTitle
-            results={results}
-            total_results={total_results}
-            category={category}
-            query={query}
-          />
-        )}
-
-        {loading ? (
-          <DisplayOutputSkeleton results={results} />
-        ) : (
-          <DisplayOutput
-            results={results}
-            category={category === "tv" ? "show" : "movie"}
-          />
+          <>
+            <SearchTitle
+              results={results}
+              total_results={total_results}
+              category={category}
+              query={query}
+            />
+            <DisplayOutput
+              results={results}
+              category={category === "tv" ? "show" : "movie"}
+            />
+          </>
         )}
       </section>
       <div className=" flex flex-col items-center justify-center w-full mx-auto">

@@ -17,7 +17,7 @@ const DisplayItem = ({ item, category }) => {
   return (
     <article key={id} className="p-3">
       <Link href={`/${category}-details/${id}`}>
-        <div className="max-w-lg h-96 mx-auto flex flex-col">
+        <div className="max-w-lg h-fit mx-auto flex flex-col">
           <Image
             src={imageUrl}
             alt="show-card"
@@ -40,7 +40,7 @@ const DisplayItem = ({ item, category }) => {
 
 const DisplayOutput = ({ results, category }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-[1600px] mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 max-w-[1600px] mx-auto">
       {results &&
         results.map((item) => (
           <DisplayItem key={item.id} item={item} category={category} />
