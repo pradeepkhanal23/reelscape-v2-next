@@ -1,7 +1,7 @@
-import PlaceholderImage from "../../public/No-Image-Placeholder.png";
 import Image from "next/image";
 import Link from "next/link";
 import Title from "./Title";
+import HeroBackground from "../../public/reel-showcase.jpg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,14 +14,14 @@ import { Autoplay, EffectCoverflow } from "swiper/modules";
 const Slider = ({ sliderMovies }) => {
   return (
     <>
-      <section className="mx-auto min-h-[60vh] py-10 relative w-full p-5 ">
-        {/* <div
-          className="absolute inset-0 w-full h-full opacity-50 -z-10"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.5) 100%)",
-          }}
-        ></div> */}
+      <section className="mx-auto min-h-[80vh] py-10 relative w-full p-5 ">
+        <Image
+          src={HeroBackground}
+          alt="Image description"
+          layout="fill"
+          objectFit="cover"
+          className="absolute inset-0 w-full h-full opacity-20 -z-10"
+        ></Image>
         <Title description="Now Playing" />
         <div>
           <Swiper
@@ -69,7 +69,7 @@ const Slider = ({ sliderMovies }) => {
 
                 const imageUrl = movie
                   ? `https://image.tmdb.org/t/p/original${poster_path}`
-                  : PlaceholderImage;
+                  : "https://fakeimg.pl/600x900/dddddd/8f8b8b?text=Reelscape";
                 return (
                   <SwiperSlide key={id} className="mb-5 ">
                     <Link href={`/movie-details/${id}`}>
@@ -80,7 +80,7 @@ const Slider = ({ sliderMovies }) => {
                           width={800}
                           height={800}
                           priority
-                          className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white "
+                          className="movie-card "
                         />
                       </div>
                     </Link>

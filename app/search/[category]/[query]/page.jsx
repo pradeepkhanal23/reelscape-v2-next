@@ -1,6 +1,5 @@
 "use client";
 
-// import SearchBar from "../../../components/SearchBar";
 import SearchBar from "@/app/components/SearchBar";
 import { useParams } from "next/navigation";
 import { getSearchAPIData } from "@/lib/getSearchAPIData";
@@ -47,51 +46,57 @@ const SearchPage = () => {
   return (
     <>
       <SearchBar />
-      <section className=" w-full p-10 ">
-        {loading ? (
-          <>
-            <h4 className="text-center mb-10 text-4xl uppercase font-bold ">
-              Searching <span className="text-yellow-200 mr-2">{query}</span>
-              <span className="text-green-300">{category}.....</span>
-            </h4>
-            <DisplayOutputSkeleton results={results} />
-          </>
-        ) : (
-          <>
-            <SearchTitle
-              results={results}
-              total_results={total_results}
-              category={category}
-              query={query}
-            />
-            <DisplayOutput
-              results={results}
-              category={category === "tv" ? "show" : "movie"}
-            />
-          </>
-        )}
-
-        {}
-      </section>
-      <div className=" flex flex-col items-center justify-center w-full mx-auto">
-        <div>
-          <button
-            onClick={handlePrev}
-            className="border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md text-lg hover:scale-[1.04] transition duration-150 hover:ease-in"
-          >
-            Prev
-          </button>
-          <button
-            onClick={handleNext}
-            className="border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md text-lg hover:scale-[1.04] transition duration-150 hover:ease-in"
-          >
-            Next
-          </button>
+      {results && results.length === 0 && !loading ? (
+        <div className="text-center text-3xl uppercase min-h-[60vh] pt-10 flex flex-col gap-3">
+          <span className="text-red-200">Oops Sorry 😢 No results Found</span>
+          <span>for</span> <q className="text-tertiary">{category}</q>{" "}
+          <q className="text-primary">{query}</q>
+          <p>Please try another movie 🎦 OR tv 📺 name....</p>
         </div>
-        <p className="text-xl mt-5">
-          Page {page} of {total_pages}
-        </p>
-      </div>
+      ) : (
+        <>
+          <section className=" w-full p-10 ">
+            {loading ? (
+              <>
+                <h4 className="text-center mb-10 text-4xl uppercase font-bold ">
+                  Searching{" "}
+                  <span className="text-yellow-200 mr-2">{query}</span>
+                  <span className="text-green-300">{category}.....</span>
+                </h4>
+                <DisplayOutputSkeleton results={results} />
+              </>
+            ) : (
+              <>
+                <SearchTitle
+                  results={results}
+                  total_results={total_results}
+                  category={category}
+                  query={query}
+                />
+                <DisplayOutput
+                  results={results}
+                  category={category === "tv" ? "show" : "movie"}
+                />
+              </>
+            )}
+
+            {}
+          </section>
+          <div className=" flex flex-col items-center justify-center w-full mx-auto">
+            <div>
+              <button onClick={handlePrev} className="pagination-btn">
+                Prev
+              </button>
+              <button onClick={handleNext} className="pagination-btn">
+                Next
+              </button>
+            </div>
+            <p className="text-xl mt-5">
+              Page {page ? page : "X"} of {total_pages ? total_pages : "X"}
+            </p>
+          </div>
+        </>
+      )}
     </>
   );
 };

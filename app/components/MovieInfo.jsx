@@ -13,14 +13,14 @@ const MovieInfo = ({
         <h1 className="font-extrabold text-center uppercase">Movie Info</h1>
         <div className="my-1 mx-auto w-[98%]">
           <div>
-            <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
+            <span className="information">
               Budget:{" "}
               <strong className="text-white">
                 {budget ? "$ " + addCommas(budget) : "N/A"}
               </strong>
             </span>
 
-            <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
+            <span className="information">
               Revenue:{" "}
               <strong className="text-white">
                 {" "}
@@ -28,10 +28,10 @@ const MovieInfo = ({
               </strong>
             </span>
 
-            <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
+            <span className="information">
               Runtime: <strong className="text-white">{runtime} mins</strong>
             </span>
-            <span className="block pb-2 pl-2 mt-2 font-medium text-center text-yellow-400 border-b-2 border-slate-10 md:text-left">
+            <span className="information">
               Status: <strong className="text-white">{status}</strong>
             </span>
           </div>

@@ -60,15 +60,12 @@ export default function MovieDetails() {
           }}
         ></div>
         <div>
-          <Link
-            href="/"
-            className="self-start border-solid border-2 border-yellow-300 px-5 py-2 ml-4 rounded-md hover:scale-[1.04] transition-all"
-          >
+          <Link href="/" className="self-start cta-btn">
             Back To Movie
           </Link>
         </div>
         <div>
-          <article className="container p-3 mx-auto">
+          <article className=" p-3 mx-auto">
             <div className="flex flex-col items-center justify-center gap-2 lg:flex-row lg:gap-10">
               <div className="w-auto h-fit md:w-96">
                 <Image
@@ -105,7 +102,7 @@ export default function MovieDetails() {
             href={`${homepage ? homepage : "#"}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="self-start border-solid border-2  border-yellow-300 px-5 py-2 ml-4 rounded-md hover:scale-[1.04] transition-all "
+            className="self-start cta-btn "
           >
             Visit Movie Homepage
           </Link>

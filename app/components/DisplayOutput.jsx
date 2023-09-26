@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import PlaceholderImage from "../../public/No-Image-Placeholder.png";
 
 const DisplayItem = ({ item, category }) => {
   const { poster_path, id } = item;
@@ -23,16 +22,18 @@ const DisplayItem = ({ item, category }) => {
             alt={category === "movie" ? item.title : item.name}
             width={800}
             height={1200}
-            className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white hover:scale-[1.03] transition-all"
+            className="movie-card"
           />
         </div>
       </Link>
 
       <div className="text-center mt-4">
-        <h4 className="uppercase text-yellow-300 tracking-wider font-bold">
+        <h4 className="title text-primary">
           {item[titleKey] || "No Title Available"}
         </h4>
-        <p className="text-gray-200">{releaseDate || "Date Not Available"}</p>
+        <p className="text-secondary font-bold">
+          {releaseDate || "Date Not Available"}
+        </p>
       </div>
     </article>
   );
@@ -40,7 +41,7 @@ const DisplayItem = ({ item, category }) => {
 
 const DisplayOutput = ({ results, category }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 max-w-[1600px] mx-auto">
+    <div className="container">
       {results &&
         results.map((item) => (
           <DisplayItem key={item.id} item={item} category={category} />
