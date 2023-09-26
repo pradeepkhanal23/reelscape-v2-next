@@ -1,13 +1,40 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 const SearchBar = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [formInputs, setFormInputs] = useState({
-    category: "movie",
+    category: "",
     searchTerm: "",
   });
+
+  console.log(pathname);
+
+  // Use useEffect to set the default category based on the pathname
+  useEffect(() => {
+    const currentPathname = pathname; // Get the current pathname
+
+    // Check if the current pathname contains "/tv" and set the category accordingly
+    if (
+      currentPathname.includes("/shows") ||
+      currentPathname.includes("/search/tv")
+    ) {
+      setFormInputs({
+        ...formInputs,
+        category: "tv",
+      });
+    } else {
+      setFormInputs({
+        ...formInputs,
+        category: "movie",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]); // Re-run the effect when the pathname changes
 
   const handleInputs = (e) => {
     let { name, value } = e.target;
@@ -16,8 +43,6 @@ const SearchBar = () => {
       [name]: value,
     });
   };
-
-  const router = useRouter();
 
   const search = async (e) => {
     e.preventDefault();

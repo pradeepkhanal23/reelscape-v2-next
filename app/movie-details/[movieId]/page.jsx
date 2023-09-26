@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import PlaceholderImage from "../../../public/No-Image-Placeholder.svg.png";
+import PlaceholderImage from "../../../public/No-Image-Placeholder.png";
 import Star from "../../../public/star.png";
 import { getAPIEndpointData } from "@/lib/getAPIEndpointData";
 import { useState, useEffect } from "react";

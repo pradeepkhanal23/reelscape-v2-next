@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 import DisplayOutput from "@/app/components/DisplayOutput";
 import SearchTitle from "@/app/components/SearchTitle";
 import DisplayOutputSkeleton from "@/app/components/DisplayOutputSkeleton";
-import SearchTitleSkeleton from "@/app/components/SearchTitleSkeleton";
 
 const SearchPage = () => {
   const { category, query } = useParams();
@@ -51,7 +50,10 @@ const SearchPage = () => {
       <section className=" w-full p-10 ">
         {loading ? (
           <>
-            <SearchTitleSkeleton />
+            <h4 className="text-center mb-10 text-4xl uppercase font-bold ">
+              Searching <span className="text-yellow-200 mr-2">{query}</span>
+              <span className="text-green-300">{category}.....</span>
+            </h4>
             <DisplayOutputSkeleton results={results} />
           </>
         ) : (
@@ -68,6 +70,8 @@ const SearchPage = () => {
             />
           </>
         )}
+
+        {}
       </section>
       <div className=" flex flex-col items-center justify-center w-full mx-auto">
         <div>

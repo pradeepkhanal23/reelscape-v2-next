@@ -4,7 +4,12 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["api-production.s3.amazonaws.com", "image.tmdb.org"],
+    domains: [
+      "api-production.s3.amazonaws.com",
+      "image.tmdb.org",
+      "placehold.co",
+      "fakeimg.pl",
+    ],
   },
 };
 

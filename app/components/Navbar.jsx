@@ -29,7 +29,9 @@ const Navbar = () => {
           <Link
             href="/"
             className={`${
-              pathname === "/" || pathname.startsWith("/movie-details/")
+              pathname === "/" ||
+              pathname.startsWith("/movie-details/") ||
+              pathname.startsWith("/search/movie")
                 ? "active"
                 : ""
             }`}
@@ -39,7 +41,9 @@ const Navbar = () => {
           <Link
             href="/shows"
             className={`${
-              pathname === "/shows" || pathname.startsWith("/show-details/")
+              pathname === "/shows" ||
+              pathname.startsWith("/show-details/") ||
+              pathname.startsWith("/search/tv")
                 ? "active"
                 : ""
             }`}

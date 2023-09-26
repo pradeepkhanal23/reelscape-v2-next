@@ -1,4 +1,4 @@
-import PlaceholderImage from "../../public/No-Image-Placeholder.svg.png";
+import PlaceholderImage from "../../public/No-Image-Placeholder.png";
 import Image from "next/image";
 import Link from "next/link";
 import Title from "./Title";
