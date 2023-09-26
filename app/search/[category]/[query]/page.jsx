@@ -7,18 +7,22 @@ import { getSearchAPIData } from "@/lib/getSearchAPIData";
 import { useState, useEffect } from "react";
 import DisplayOutput from "@/app/components/DisplayOutput";
 import SearchTitle from "@/app/components/SearchTitle";
+import DisplayOutputSkeleton from "@/app/components/DisplayOutputSkeleton";
+import SearchTitleSkeleton from "@/app/components/SearchTitleSkeleton";
 
 const SearchPage = () => {
   const { category, query } = useParams();
 
   const [searchedData, setSearchedData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch search-details
     async function fetchSearchDetails() {
       const response = await getSearchAPIData(category, query, currentPage);
       setSearchedData(response);
+      setLoading(false);
     }
 
     fetchSearchDetails();
@@ -45,16 +49,27 @@ const SearchPage = () => {
     <>
       <SearchBar />
       <section className=" w-full p-10 ">
-        <SearchTitle
-          results={results}
-          total_results={total_results}
-          category={category}
-          query={query}
-        />
-        <DisplayOutput
-          results={results}
-          category={category === "tv" ? "show" : "movie"}
-        />
+        {loading ? (
+          <>
+            <SearchTitleSkeleton />
+          </>
+        ) : (
+          <SearchTitle
+            results={results}
+            total_results={total_results}
+            category={category}
+            query={query}
+          />
+        )}
+
+        {loading ? (
+          <DisplayOutputSkeleton results={results} />
+        ) : (
+          <DisplayOutput
+            results={results}
+            category={category === "tv" ? "show" : "movie"}
+          />
+        )}
       </section>
       <div className=" flex flex-col items-center justify-center w-full mx-auto">
         <div>
