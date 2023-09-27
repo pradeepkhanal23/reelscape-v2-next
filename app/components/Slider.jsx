@@ -18,9 +18,9 @@ const Slider = ({ sliderMovies }) => {
         <Image
           src={HeroBackground}
           alt="Image description"
-          layout="fill"
-          objectFit="cover"
-          className="absolute inset-0 w-full h-full opacity-20 -z-10"
+          height={500}
+          width={500}
+          className="absolute inset-0 w-full h-full opacity-20 -z-10 object-cover"
         ></Image>
         <Title description="Now Playing" />
         <div>

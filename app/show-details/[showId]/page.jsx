@@ -8,9 +8,11 @@ import Star from "../../../public/star.png";
 import { getAPIEndpointData } from "@/lib/getAPIEndpointData";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import Modal from "@/app/components/Modal";
 
 export default function TvDetails() {
   const [tvDetails, setTvDetails] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
   const { showId } = useParams();
 
   useEffect(() => {
@@ -102,12 +104,18 @@ export default function TvDetails() {
           </div>
           <div>
             <Link
-              href={`${homepage ? homepage : "#"}`}
+              href={homepage || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="self-start cta-btn"
+              className="self-start cta-btn "
+              onClick={(e) => {
+                if (!homepage) {
+                  e.preventDefault();
+                  setModalOpen(true);
+                }
+              }}
             >
-              Visit TV Homepage
+              Visit Tv Homepage
             </Link>
           </div>
           <TvInfo
@@ -117,6 +125,16 @@ export default function TvDetails() {
             production_companies={production_companies}
           />
         </section>
+      )}
+      {modalOpen && (
+        <>
+          <Modal
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            message="The homepage for this tv show is currently not available."
+            title="Homepage Not Available"
+          />
+        </>
       )}
     </div>
   );

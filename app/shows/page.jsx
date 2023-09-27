@@ -4,7 +4,7 @@ import { getAPIEndpointData } from "@/lib/getAPIEndpointData";
 import DisplayOutput from "../components/DisplayOutput";
 
 export const metadata = {
-  title: "Shows",
+  title: "TV Shows",
 };
 
 export default async function ShowsPage() {

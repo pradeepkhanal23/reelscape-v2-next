@@ -8,9 +8,12 @@ import { getAPIEndpointData } from "@/lib/getAPIEndpointData";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import MovieInfo from "@/app/components/MovieInfo";
+import Modal from "@/app/components/Modal";
 
 export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -99,10 +102,16 @@ export default function MovieDetails() {
         </div>
         <div>
           <Link
-            href={`${homepage ? homepage : "#"}`}
+            href={homepage || "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="self-start cta-btn "
+            onClick={(e) => {
+              if (!homepage) {
+                e.preventDefault();
+                setModalOpen(true);
+              }
+            }}
           >
             Visit Movie Homepage
           </Link>
@@ -115,6 +124,16 @@ export default function MovieDetails() {
           production_companies={production_companies}
         />
       </section>
+      {modalOpen && (
+        <>
+          <Modal
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            message="The homepage for this movie is currently not available."
+            title="Homepage Not Available"
+          />
+        </>
+      )}
     </div>
   );
 }

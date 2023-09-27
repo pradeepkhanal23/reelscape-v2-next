@@ -12,8 +12,6 @@ const SearchBar = () => {
     searchTerm: "",
   });
 
-  console.log(pathname);
-
   // Use useEffect to set the default category based on the pathname
   useEffect(() => {
     const currentPathname = pathname; // Get the current pathname
