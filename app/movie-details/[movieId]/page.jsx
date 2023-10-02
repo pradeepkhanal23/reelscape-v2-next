@@ -42,7 +42,7 @@ export default function MovieDetails() {
     production_companies,
   } = movieDetails;
 
-  const posterUrl = movieDetails
+  const imageUrl = movieDetails
     ? `https://image.tmdb.org/t/p/original/${poster_path}`
     : PlaceholderImage;
 
@@ -72,7 +72,7 @@ export default function MovieDetails() {
             <div className="flex flex-col items-center justify-center gap-2 lg:flex-row lg:gap-10">
               <div className="w-auto h-fit md:w-96">
                 <Image
-                  src={posterUrl}
+                  src={imageUrl}
                   alt="image placeholder"
                   className="object-cover w-full h-full rounded-lg border-2 border-white"
                   width={800}

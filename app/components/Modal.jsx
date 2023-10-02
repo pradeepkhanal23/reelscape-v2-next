@@ -1,7 +1,12 @@
+import { RiErrorWarningLine } from "react-icons/ri";
+
 const Modal = ({ setModalOpen, modalOpen, message, title }) => {
   return (
     <div className="fixed inset-0 w-screen h-screen bg-slate-900  z-1000 ">
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2  -translate-y-1/2 w-[90%] max-w-md z-1000 mx-auto bg-white text-black rounded-md shadow-lg p-4">
+        <div className="flex justify-center scale-150 my-3">
+          <RiErrorWarningLine />
+        </div>
         <h2 className="text-center text-lg font-bold">{title}</h2>
         <p className="text-center mt-2">{message}</p>
         <div className="flex justify-center mt-4">
