@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Title from "./Title";
 import HeroBackground from "../../public/reel-showcase.jpg";
+import PlaceholderImage from "../../public/No-Image-Placeholder.png";
 
 // Import Swiper styles
 import "swiper/css";
@@ -67,9 +68,11 @@ const Slider = ({ sliderMovies }) => {
 
                 //constructing full url poster path
 
+                // https://fakeimg.pl/600x900/dddddd/8f8b8b?text=Reelscape
+
                 const imageUrl = movie
                   ? `https://image.tmdb.org/t/p/original${poster_path}`
-                  : "https://fakeimg.pl/600x900/dddddd/8f8b8b?text=Reelscape";
+                  : PlaceholderImage;
                 return (
                   <SwiperSlide key={id} className="mb-5 ">
                     <Link href={`/movie-details/${id}`}>
@@ -79,8 +82,7 @@ const Slider = ({ sliderMovies }) => {
                           alt="movie-card"
                           width={800}
                           height={800}
-                          priority
-                          className="object-cover h-full w-full rounded-lg shadow-lg border-2 border-white  "
+                          className="relative object-cover h-full w-full rounded-lg shadow-lg border-2 border-white  "
                         />
                       </div>
                     </Link>
